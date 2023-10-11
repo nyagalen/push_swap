@@ -62,6 +62,8 @@ void	free_split(char **spl)
 	int	i;
 
 	i = 0;
+	if (!spl)
+		return ;
 	while (spl[i])
 	{
 		free(spl[i]);
@@ -70,8 +72,9 @@ void	free_split(char **spl)
 	free(spl);
 }
 
-void	free_split_err(char **spl)
+void	free_split_err(char **spl, t_stack **stack)
 {
 	free_split(spl);
+	free_stack(stack);
 	error("Error");
 }

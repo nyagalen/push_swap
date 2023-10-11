@@ -26,7 +26,7 @@ int	check_nums(char **argv, int start)
 	c = start;
 	while (argv[c])
 	{
-		if (ft_strlen(argv[c]) > 11)
+		if (ft_strlen(argv[c]) > 11 && argv[c][0] != '0')
 			return (0);
 		i = 0;
 		if (argv[c][i] == 45)

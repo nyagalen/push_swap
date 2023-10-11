@@ -93,6 +93,6 @@ void	ss(t_stack **a, t_stack **b, int write);
 void	print_stack(t_stack *stack);
 int		find_tpos_ba(t_stack *to, int from_num);
 void	free_split(char **spl);
-void	free_split_err(char **spl);
+void	free_split_err(char **spl, t_stack **stack);
 
 #endif

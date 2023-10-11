@@ -46,12 +46,12 @@ t_stack	*stack_split(char **argv)
 	a = NULL;
 	str = ft_split(argv[1], ' ');
 	if (!check_nums(str, 0))
-		free_split_err(str);
+		free_split_err(str, &a);
 	while (str[i])
 	{
 		num = ft_atoi(str[i]);
 		if (num < INT_MIN || num > INT_MAX)
-			free_split_err(str);
+			free_split_err(str, &a);
 		stack_addback(&a, stack_new((int)num));
 		i++;
 	}
@@ -77,7 +77,10 @@ t_stack	*argv_stack(int argc, char **argv)
 		{
 			num = ft_atoi(argv[i]);
 			if (num < INT_MIN || num > INT_MAX)
+			{
+				free_stack(&a);
 				error("Error");
+			}
 			stack_addback(&a, stack_new((int)num));
 			i++;
 		}
