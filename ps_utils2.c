@@ -56,3 +56,22 @@ void	free_stack(t_stack **stack)
 		*stack = tmp;
 	}
 }
+
+void	free_split(char **spl)
+{
+	int	i;
+
+	i = 0;
+	while (spl[i])
+	{
+		free(spl[i]);
+		i++;
+	}
+	free(spl);
+}
+
+void	free_split_err(char **spl)
+{
+	free_split(spl);
+	error("Error");
+}

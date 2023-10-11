@@ -53,9 +53,9 @@ int		min_cost(t_stack *stack);
 void	assign_moves_ba(t_stack *min_b, int szb, int sza, t_moves *moves);
 void	assign_min_moves_ba(t_stack *b, int szb, int sza, t_moves *moves);
 void	error(char *str);
-void	check_nums(char **argv, int start);
+int		check_nums(char **argv, int start);
 int		check_doubles(t_stack *stack);
-int		ft_atoi(char *str);
+long	ft_atoi(char *str);
 t_stack	*stack_split(char **argv);
 t_stack	*argv_stack(int argc, char **argv);
 int		stack_sorted(t_stack *stack);
@@ -92,5 +92,7 @@ void	sb(t_stack **b, int write);
 void	ss(t_stack **a, t_stack **b, int write);
 void	print_stack(t_stack *stack);
 int		find_tpos_ba(t_stack *to, int from_num);
+void	free_split(char **spl);
+void	free_split_err(char **spl);
 
 #endif

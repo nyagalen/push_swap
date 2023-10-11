@@ -18,7 +18,7 @@ void	error(char *str)
 	exit(0);
 }
 
-void	check_nums(char **argv, int start)
+int	check_nums(char **argv, int start)
 {
 	int	c;
 	int	i;
@@ -26,17 +26,20 @@ void	check_nums(char **argv, int start)
 	c = start;
 	while (argv[c])
 	{
+		if (ft_strlen(argv[c]) > 11)
+			return (0);
 		i = 0;
 		if (argv[c][i] == 45)
 			i++;
 		while (argv[c][i])
 		{
 			if (argv[c][i] < 48 || argv[c][i] > 57)
-				error("Error");
+				return (0);
 			i++;
 		}
 		c++;
 	}
+	return (1);
 }
 
 int	check_doubles(t_stack *stack)

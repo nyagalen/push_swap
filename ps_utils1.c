@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	int		sign;
 	int		i;
@@ -32,9 +32,7 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	result *= sign;
-	if (result < INT_MIN || result > INT_MAX)
-		error("Error");
-	return ((int)result);
+	return (result);
 }
 
 t_stack	*stack_split(char **argv)
@@ -42,20 +40,22 @@ t_stack	*stack_split(char **argv)
 	char	**str;
 	t_stack	*a;
 	int		i;
-	int		num;
+	long	num;
 
 	i = 0;
 	a = NULL;
 	str = ft_split(argv[1], ' ');
-	check_nums(str, 0);
+	if (!check_nums(str, 0))
+		free_split_err(str);
 	while (str[i])
 	{
 		num = ft_atoi(str[i]);
-		free(str[i]);
-		stack_addback(&a, stack_new(num));
+		if (num < INT_MIN || num > INT_MAX)
+			free_split_err(str);
+		stack_addback(&a, stack_new((int)num));
 		i++;
 	}
-	free(str);
+	free_split(str);
 	return (a);
 }
 
@@ -63,7 +63,7 @@ t_stack	*argv_stack(int argc, char **argv)
 {
 	t_stack	*a;
 	int		i;
-	int		num;
+	long	num;
 
 	i = 1;
 	a = NULL;
@@ -71,11 +71,14 @@ t_stack	*argv_stack(int argc, char **argv)
 		a = stack_split(argv);
 	else
 	{
-		check_nums(argv, 1);
+		if (!check_nums(argv, 1))
+			error("Error");
 		while (i < argc)
 		{
 			num = ft_atoi(argv[i]);
-			stack_addback(&a, stack_new(num));
+			if (num < INT_MIN || num > INT_MAX)
+				error("Error");
+			stack_addback(&a, stack_new((int)num));
 			i++;
 		}
 	}
